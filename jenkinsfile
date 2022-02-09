@@ -1,11 +1,26 @@
 
 pipeline {
     agent any
+    parameters {
+        choice(name: 'VERSION', choices: ['1.0.1', '1.0.2', '1.1.1'])
+        booleanParam(name: 'executeTest', defaultValue: true)
+    }
 
     stages {
         stage('build') {
             steps {
                 echo "Hello Dev!"
+            }
+        }
+
+        stage('test') {
+            when {
+                expression {
+                    params.executeTest == true
+                }
+            }
+            steps {
+                echo "Testing initializing..."
             }
         }
     }
