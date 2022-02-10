@@ -51,8 +51,9 @@ pipeline {
         stage('prod-deploy') {
             steps {
                 script {
-                    env.ENV2 = input message: "Wants to re-deploy to", ok: "Done", parameters: [choice(name: 'environment', choices['dev', 'prod'])]
-                    echo "re-deploy initializing for ${ENV2}"
+                    env.ENV = "global set"
+                    // env.ENV2 = input message: "Wants to re-deploy to", ok: "Done", parameters: [choice(name: 'environment', choices['dev', 'prod'])]
+                    echo "re-deploy initializing for ${ENV}"
                 }
             }
         }
